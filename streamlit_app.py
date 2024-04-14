@@ -86,7 +86,7 @@ if prompt or selected_suggestion:
         st.info("Please add your OpenAI API key to continue.")
         st.stop()
 
-    client = OpenAI()
+    client = OpenAI(api_key=openai_api_key)
     if selected_suggestion:
         prompt = selected_suggestion
     st.session_state.messages.append({"role": "user", "content": prompt})
