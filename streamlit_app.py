@@ -46,12 +46,9 @@ Format the output in a dashed list.
 """
 
 with st.sidebar:
-    openai_api_key = st.text_input(
-        "OpenAI API Key", key="chatbot_api_key", type="password"
-    )
     role = st.selectbox(
         "Select AI role",
-        ["angry store manager", "sarcastic high school friend", "funny stranger"],
+        ["angry store manager", "sarcastic high school friend", "curious neighbor", "funny stranger"],
         index=0,
     )
     level = st.selectbox(
@@ -82,11 +79,7 @@ if "selected_suggestion" in st.session_state:
 
 prompt = st.chat_input()
 if prompt or selected_suggestion:
-    if not openai_api_key:
-        st.info("Please add your OpenAI API key to continue.")
-        st.stop()
-
-    client = OpenAI(api_key=openai_api_key)
+    client = OpenAI()
     if selected_suggestion:
         prompt = selected_suggestion
     st.session_state.messages.append({"role": "user", "content": prompt})
